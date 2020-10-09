@@ -13,6 +13,12 @@ class AmazonDetect
         return false;
     }
 
+    /**
+     * ipInRange
+     * @param string $ip
+     * @param string $range - the CIDR range or ip : eg 123/211.332.111/32 or 123/211.332.111
+     * @return boolean
+     */
     public static function ipInRange($ip, $range)
     {
         $range = $range['ip_prefix']; 
@@ -28,6 +34,10 @@ class AmazonDetect
         return (($ip_decimal & $netmask_decimal) == ($range_decimal & $netmask_decimal));
     }
 
+    /**
+     * Load json file from aws for the list of all ip ranges
+     * @return array
+     */
     public function loadRanges()
     {
         $ranges = array();
